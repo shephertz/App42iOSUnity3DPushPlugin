@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PushScript.cs">
+    <Files>
+      <File FileName="../../Downloads/push-notifications-sdk-master 2/SDK Sample Projects/Unity/iOS/PushNotificationsIOS.cs" Line="3" Column="38" />
+      <File FileName="Assets/PushScript.cs" Line="36" Column="6" />
+      <File FileName="Assets/Standard Assets/Scripts/Camera Scripts/SmoothFollow.js" Line="1" Column="1" />
+      <File FileName="Assets/NewBehaviourScript.js" Line="4" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
