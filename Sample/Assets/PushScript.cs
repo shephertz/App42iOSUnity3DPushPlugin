@@ -20,23 +20,27 @@ public class PushScript : MonoBehaviour
 	void Start ()
 	{
 		Debug.Log("Start called");
+		
 	    setListenerGameObject(this.gameObject.name);// sets the name of the game object as a listener to which this script is assigned.
+		
 	}
 	
 	//Sent when the application successfully registered with Apple Push Notification Service (APNS).
 	void onDidRegisterForRemoteNotificationsWithDeviceToken(string deviceToken)
 	{
+		Debug.Log("deviceToken"+deviceToken);
 		if (deviceToken != null && deviceToken.Length!=0) 
 		{
-			registerDeviceTokenToApp42PushNotificationService(deviceToken,"User Name");
+			registerDeviceTokenToApp42PushNotificationService(deviceToken,"UserName21");
 		}
-		SendPushToUser("Suman","Hello, Unity!!");
+		SendPushToUser("UserName21","Hello, Unity!!");
 	}
 	
 	//Sent when the application failed to be registered with Apple Push Notification Service (APNS).
 	void onDidFailToRegisterForRemoteNotificationsWithError(string error)
 	{
 		Debug.Log(error);
+		SendPushToUser("UserName21","Hello, Unity!!");
 	}
 	
 	//Sent when the application Receives a push notification
@@ -50,14 +54,17 @@ public class PushScript : MonoBehaviour
 	//Registers a user with the given device token to APP42 push notification service
 	void registerDeviceTokenToApp42PushNotificationService(string devToken,string userName)
 	{
+		Debug.Log("registerDeviceTokenToApp42PushNotificationService");
 		ServiceAPI serviceAPI = new ServiceAPI(api_key,secret_key);	
 	    PushNotificationService pushService = serviceAPI.BuildPushNotificationService();
 		pushService.StoreDeviceToken(userName,devToken,"iOS");
+		//pushService.StoreDeviceToken(userName,devToken,com.shephertz.app42.paas.sdk.csharp.pushNotification.DeviceType.iOS);
 	}
 	
 	//Sends push to a given user
 	void SendPushToUser(string userName,string message)
 	{
+		Debug.Log("push message"+message);
 		ServiceAPI serviceAPI = new ServiceAPI(api_key,secret_key);	
 	    PushNotificationService pushService = serviceAPI.BuildPushNotificationService();
 		pushService.SendPushMessageToUser(userName,message);

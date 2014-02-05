@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{EC5B0531-4B22-9FB7-8407-A5FA9486DAC0}</ProjectGuid>
+	<ProjectGuid>{BBED6A60-90F4-9D15-9E1E-85E878581BE5}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -45,13 +45,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\PushScript.cs" />
- <Reference Include="Assets\App42_CSHARP_SDK_1.0">
- <HintPath>Assets\App42_CSHARP_SDK_1.0.dll</HintPath>
+ <Reference Include="Assets\App42_Unity3D_SDK_2.1.1">
+ <HintPath>Assets\App42_Unity3D_SDK_2.1.1.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{E0B7D6E5-2F6A-4F7C-70D0-3D21323F0281}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+      <Project>{47A42B4B-4D87-C987-9B1F-0A5BA1606BA9}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

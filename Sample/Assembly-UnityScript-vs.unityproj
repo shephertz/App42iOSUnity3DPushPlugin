@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{5B1CC00B-96D1-D2B2-8167-C1643A6CDBAC}</ProjectGuid>
+	<ProjectGuid>{8A0315D1-6FC6-0F8A-D8C0-56AC1A672550}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -48,8 +48,8 @@
  <Reference Include="Library\ScriptAssemblies\Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
- <Reference Include="Assets\App42_CSHARP_SDK_1.0">
- <HintPath>Assets\App42_CSHARP_SDK_1.0.dll</HintPath>
+ <Reference Include="Assets\App42_Unity3D_SDK_2.1.1">
+ <HintPath>Assets\App42_Unity3D_SDK_2.1.1.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

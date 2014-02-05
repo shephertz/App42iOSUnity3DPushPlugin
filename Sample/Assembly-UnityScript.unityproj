@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{5B1CC00B-96D1-D2B2-8167-C1643A6CDBAC}</ProjectGuid>
+	<ProjectGuid>{8A0315D1-6FC6-0F8A-D8C0-56AC1A672550}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -45,13 +45,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\NewBehaviourScript.js" />
- <Reference Include="Assets\App42_CSHARP_SDK_1.0">
- <HintPath>Assets\App42_CSHARP_SDK_1.0.dll</HintPath>
+ <Reference Include="Assets\App42_Unity3D_SDK_2.1.1">
+ <HintPath>Assets\App42_Unity3D_SDK_2.1.1.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{E0B7D6E5-2F6A-4F7C-70D0-3D21323F0281}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+      <Project>{47A42B4B-4D87-C987-9B1F-0A5BA1606BA9}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
