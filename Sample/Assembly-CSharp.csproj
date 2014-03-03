@@ -44,6 +44,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\PushNotificationResponse.cs" />
+     <Compile Include="Assets\PushResponse.cs" />
      <Compile Include="Assets\PushScript.cs" />
  <Reference Include="Assets\App42_Unity3D_SDK_2.1.1">
  <HintPath>Assets\App42_Unity3D_SDK_2.1.1.dll</HintPath>

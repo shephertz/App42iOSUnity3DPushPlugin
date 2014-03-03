@@ -9,7 +9,7 @@ public class PushScript : MonoBehaviour
 {
 	const string api_key = "3c1d8c1d23e1dde0d820b06e33e6260e3b9ac0438d522a4ac9d524fc12cb8559";//"App42_App_Key";
 	const string secret_key = "254964c8a7fcc95cee0362adc2e0e06e0a64ec53c7a9e5279c11b3c4303edf73";//"App42_Secret_Key";
-	
+	PushResponse callBack = new PushResponse();
 	[System.Runtime.InteropServices.DllImport("__Internal")]
 	extern static public void registerForRemoteNotifications();
 	
@@ -19,10 +19,10 @@ public class PushScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		Debug.Log("Start called");
-		
-	    setListenerGameObject(this.gameObject.name);// sets the name of the game object as a listener to which this script is assigned.
-		
+		Debug.Log("Start called -----"+this.gameObject.name);
+		//registerDeviceTokenToApp42PushNotificationService("hhhhhhhhddddddddhhh","himanshu1");
+	   // setListenerGameObject(this.gameObject.name);// sets the name of the game object as a listener to which this script is assigned.
+		SendPushToUser("DEV_Device","Hello, Unity!!");
 	}
 	
 	//Sent when the application successfully registered with Apple Push Notification Service (APNS).
@@ -31,22 +31,22 @@ public class PushScript : MonoBehaviour
 		Debug.Log("deviceToken"+deviceToken);
 		if (deviceToken != null && deviceToken.Length!=0) 
 		{
-			registerDeviceTokenToApp42PushNotificationService(deviceToken,"UserName21");
+			registerDeviceTokenToApp42PushNotificationService(deviceToken,"DEV_Device");
 		}
-		SendPushToUser("UserName21","Hello, Unity!!");
+		SendPushToUser("DEV_Device","Hello, Unity!!");
 	}
 	
 	//Sent when the application failed to be registered with Apple Push Notification Service (APNS).
-	void onDidFailToRegisterForRemoteNotificationsWithError(string error)
+	void onDidFailToRegisterForRemoteNotificcallBackationsWithError(string error)
 	{
 		Debug.Log(error);
-		SendPushToUser("UserName21","Hello, Unity!!");
+		SendPushToUser("DEV_Device","Hello, Unity!!");
 	}
 	
 	//Sent when the application Receives a push notification
 	void onPushNotificationsReceived(string pushMessageString)
 	{
-		Console.WriteLine("onPushNotificationsReceived");
+		Console.WriteLine("onPushNotificationsReceived....Called");
 		//dump you code here
 		Debug.Log(pushMessageString);
 	}
@@ -54,20 +54,21 @@ public class PushScript : MonoBehaviour
 	//Registers a user with the given device token to APP42 push notification service
 	void registerDeviceTokenToApp42PushNotificationService(string devToken,string userName)
 	{
-		Debug.Log("registerDeviceTokenToApp42PushNotificationService");
+		Debug.Log("registerDeviceTokenToApp42PushNotificationService   Called");
 		ServiceAPI serviceAPI = new ServiceAPI(api_key,secret_key);	
 	    PushNotificationService pushService = serviceAPI.BuildPushNotificationService();
-		pushService.StoreDeviceToken(userName,devToken,"iOS");
+		pushService.StoreDeviceToken(userName,devToken,"iOS",callBack);
 		//pushService.StoreDeviceToken(userName,devToken,com.shephertz.app42.paas.sdk.csharp.pushNotification.DeviceType.iOS);
 	}
 	
 	//Sends push to a given user
 	void SendPushToUser(string userName,string message)
 	{
-		Debug.Log("push message"+message);
+		Debug.Log("SendPushToUser Called");
 		ServiceAPI serviceAPI = new ServiceAPI(api_key,secret_key);	
 	    PushNotificationService pushService = serviceAPI.BuildPushNotificationService();
-		pushService.SendPushMessageToUser(userName,message);
+		pushService.SendPushMessageToUser(userName,message,callBack);
+		
 	}
 	
 }
