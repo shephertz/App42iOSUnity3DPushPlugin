@@ -7,8 +7,8 @@ using System.Runtime.InteropServices;
 
 public class PushScript : MonoBehaviour 
 {
-	const string api_key = "3c1d8c1d23e1dde0d820b06e33e6260e3b9ac0438d522a4ac9d524fc12cb8559";//"App42_App_Key";
-	const string secret_key = "254964c8a7fcc95cee0362adc2e0e06e0a64ec53c7a9e5279c11b3c4303edf73";//"App42_Secret_Key";
+	const string api_key = "App42_App_Key";
+	const string secret_key = "App42_Secret_Key";
 	PushResponse callBack = new PushResponse();
 	[System.Runtime.InteropServices.DllImport("__Internal")]
 	extern static public void registerForRemoteNotifications();
@@ -19,10 +19,9 @@ public class PushScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		App42Log.SetDebug(true);
 		Debug.Log("Start called -----"+this.gameObject.name);
-		//registerDeviceTokenToApp42PushNotificationService("hhhhhhhhddddddddhhh","himanshu1");
-	   // setListenerGameObject(this.gameObject.name);// sets the name of the game object as a listener to which this script is assigned.
-		SendPushToUser("DEV_Device","Hello, Unity!!");
+	    setListenerGameObject(this.gameObject.name);// sets the name of the game object as a listener to which this script is assigned.
 	}
 	
 	//Sent when the application successfully registered with Apple Push Notification Service (APNS).
@@ -31,16 +30,16 @@ public class PushScript : MonoBehaviour
 		Debug.Log("deviceToken"+deviceToken);
 		if (deviceToken != null && deviceToken.Length!=0) 
 		{
-			registerDeviceTokenToApp42PushNotificationService(deviceToken,"DEV_Device");
+			registerDeviceTokenToApp42PushNotificationService(deviceToken,"Daljeet");
 		}
-		SendPushToUser("DEV_Device","Hello, Unity!!");
+		SendPushToUser("Daljeet","Hello, Unity!!");
 	}
 	
 	//Sent when the application failed to be registered with Apple Push Notification Service (APNS).
 	void onDidFailToRegisterForRemoteNotificcallBackationsWithError(string error)
 	{
 		Debug.Log(error);
-		SendPushToUser("DEV_Device","Hello, Unity!!");
+		SendPushToUser("Daljeet","Hello, Unity!!");
 	}
 	
 	//Sent when the application Receives a push notification
