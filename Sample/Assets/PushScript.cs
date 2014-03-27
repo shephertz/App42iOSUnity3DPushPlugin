@@ -32,14 +32,14 @@ public class PushScript : MonoBehaviour
 		{
 			registerDeviceTokenToApp42PushNotificationService(deviceToken,"Daljeet");
 		}
-		SendPushToUser("Daljeet","Hello, Unity!!");
+		SendPushToUser("User Name","Hello, Unity!!");
 	}
 	
 	//Sent when the application failed to be registered with Apple Push Notification Service (APNS).
 	void onDidFailToRegisterForRemoteNotificcallBackationsWithError(string error)
 	{
 		Debug.Log(error);
-		SendPushToUser("Daljeet","Hello, Unity!!");
+		SendPushToUser("User Name","Hello, Unity!!");
 	}
 	
 	//Sent when the application Receives a push notification
