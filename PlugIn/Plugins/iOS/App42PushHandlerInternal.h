@@ -11,6 +11,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UIApplication(SupressWarnings)
+
+- (void)application:(UIApplication *)application app42didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings;
 - (void)application:(UIApplication *)application app42didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken;
 - (void)application:(UIApplication *)application app42didFailToRegisterForRemoteNotificationsWithError:(NSError *)err;
 - (void)application:(UIApplication *)application app42didReceiveRemoteNotification:(NSDictionary *)userInfo;

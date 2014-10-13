@@ -69,5 +69,10 @@ public class PushScript : MonoBehaviour
 		pushService.SendPushMessageToUser(userName,message,callBack);
 		
 	}
+
+	void onDidRegisterUserNotificationSettings(string setting)
+	{
+		Debug.Log("setting"+setting);
+	}
 	
 }

@@ -12,7 +12,26 @@
 
 void registerForRemoteNotifications()
 {
-	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+	//[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    UIApplication *application = [UIApplication sharedApplication];
+    // Register for Push Notitications, if running on iOS 8
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)])
+    {
+        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                        UIUserNotificationTypeBadge |
+                                                        UIUserNotificationTypeSound);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    }
+    else
+    {
+        // Register for Push Notifications, if running iOS version < 8
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                         UIRemoteNotificationTypeAlert |
+                                                         UIRemoteNotificationTypeSound)];
+    }
 }
 
 
@@ -54,11 +73,40 @@ BOOL app42RunTimeDidFinishLaunching(id self, SEL _cmd, id application, id launch
 		result = YES;
 	}
 	
-	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    // Register for Push Notitications, if running on iOS 8
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)])
+    {
+        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                        UIUserNotificationTypeBadge |
+                                                        UIUserNotificationTypeSound);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    }
+    else
+    {
+        // Register for Push Notifications, if running iOS version < 8
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                         UIRemoteNotificationTypeAlert |
+                                                         UIRemoteNotificationTypeSound)];
+    }
+	//[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
 	
 	return result;
 }
 
+void app42RunTimeDidRegisterUserNotificationSettings(id self, SEL _cmd, id application, id notificationSettings)
+{
+    if ([self respondsToSelector:@selector(application:app42didRegisterUserNotificationSettings:)])
+    {
+        [self application:application app42didRegisterUserNotificationSettings:notificationSettings];
+    }
+    NSString *setting = @"DidRegisterUserNotificationSettings successfully";
+    NSLog(@"setting=%@",setting);
+    const char * str = [setting UTF8String];
+    UnitySendMessage(listenerGameObject, "onDidRegisterUserNotificationSettings", str);
+}
 
 void app42RunTimeDidRegisterForRemoteNotificationsWithDeviceToken(id self, SEL _cmd, id application, id devToken)
 {
@@ -159,6 +207,10 @@ static void exchangeMethodImplementations(Class class, SEL oldMethod, SEL newMet
     
 	exchangeMethodImplementations(delegateClass, @selector(application:didFinishLaunchingWithOptions:),
                                   @selector(application:app42didFinishLaunchingWithOptions:), (IMP)app42RunTimeDidFinishLaunching, "v@:::");
+    
+    exchangeMethodImplementations(delegateClass, @selector(application:didRegisterUserNotificationSettings:),
+                                  @selector(application:app42didRegisterUserNotificationSettings:), (IMP)app42RunTimeDidRegisterUserNotificationSettings, "v@:::");
+    
     exchangeMethodImplementations(delegateClass, @selector(application:didRegisterForRemoteNotificationsWithDeviceToken:),
 		   @selector(application:app42didRegisterForRemoteNotificationsWithDeviceToken:), (IMP)app42RunTimeDidRegisterForRemoteNotificationsWithDeviceToken, "v@:::");
     

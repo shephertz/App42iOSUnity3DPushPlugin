@@ -7,12 +7,12 @@ using System.Runtime.InteropServices;
 
 public class PushScript : MonoBehaviour 
 {
-	const string api_key = "Your_API_Key";
-	const string secret_key = "Your_Secret_Key";
+	const string api_key = "00997a26e28f8e9e3ee0aebc9dbcda1b6c36537bb2f21989a8923f406daf97ae";
+	const string secret_key = "706d9f53f67a18fcb427266231d998c43abe453cffa4a70091038bb861587639";
 	PushResponse callBack = new PushResponse();
 	[System.Runtime.InteropServices.DllImport("__Internal")]
 	extern static public void registerForRemoteNotifications();
-	
+
 	[System.Runtime.InteropServices.DllImport("__Internal")]
 	extern static public void setListenerGameObject(string listenerName);
 	
@@ -24,22 +24,23 @@ public class PushScript : MonoBehaviour
 	    setListenerGameObject(this.gameObject.name);// sets the name of the game object as a listener to which this script is assigned.
 	}
 	
+
 	//Sent when the application successfully registered with Apple Push Notification Service (APNS).
 	void onDidRegisterForRemoteNotificationsWithDeviceToken(string deviceToken)
 	{
 		Debug.Log("deviceToken"+deviceToken);
 		if (deviceToken != null && deviceToken.Length!=0) 
 		{
-			registerDeviceTokenToApp42PushNotificationService(deviceToken,"User Name");
+			registerDeviceTokenToApp42PushNotificationService(deviceToken,"NewUser123");
 		}
-		SendPushToUser("User Name","Hello, Unity!!");
+		SendPushToUser("NewUser123","Hello, Unity!!");
 	}
 	
 	//Sent when the application failed to be registered with Apple Push Notification Service (APNS).
 	void onDidFailToRegisterForRemoteNotificcallBackationsWithError(string error)
 	{
 		Debug.Log(error);
-		SendPushToUser("User Name","Hello, Unity!!");
+		SendPushToUser("NewUser123","Hello, Unity!!");
 	}
 	
 	//Sent when the application Receives a push notification
@@ -67,7 +68,11 @@ public class PushScript : MonoBehaviour
 		ServiceAPI serviceAPI = new ServiceAPI(api_key,secret_key);	
 	    PushNotificationService pushService = serviceAPI.BuildPushNotificationService();
 		pushService.SendPushMessageToUser(userName,message,callBack);
-		
 	}
-	
+
+	void onDidRegisterUserNotificationSettings(string setting)
+	{
+		Debug.Log("setting"+setting);
+	}
+
 }
