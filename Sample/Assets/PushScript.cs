@@ -22,25 +22,23 @@ public class PushScript : MonoBehaviour
 		App42Log.SetDebug(true);
 		Debug.Log("Start called -----"+this.gameObject.name);
 	    setListenerGameObject(this.gameObject.name);// sets the name of the game object as a listener to which this script is assigned.
+		registerForRemoteNotifications();
 	}
 	
 
 	//Sent when the application successfully registered with Apple Push Notification Service (APNS).
 	void onDidRegisterForRemoteNotificationsWithDeviceToken(string deviceToken)
 	{
-		Debug.Log("deviceToken"+deviceToken);
 		if (deviceToken != null && deviceToken.Length!=0) 
 		{
-			registerDeviceTokenToApp42PushNotificationService(deviceToken,"NewUser123");
+			registerDeviceTokenToApp42PushNotificationService(deviceToken,"NewUserRajeev123");
 		}
-		SendPushToUser("NewUser123","Hello, Unity!!");
 	}
 	
 	//Sent when the application failed to be registered with Apple Push Notification Service (APNS).
 	void onDidFailToRegisterForRemoteNotificcallBackationsWithError(string error)
 	{
 		Debug.Log(error);
-		SendPushToUser("NewUser123","Hello, Unity!!");
 	}
 	
 	//Sent when the application Receives a push notification
@@ -58,7 +56,6 @@ public class PushScript : MonoBehaviour
 		ServiceAPI serviceAPI = new ServiceAPI(api_key,secret_key);	
 	    PushNotificationService pushService = serviceAPI.BuildPushNotificationService();
 		pushService.StoreDeviceToken(userName,devToken,"iOS",callBack);
-		//pushService.StoreDeviceToken(userName,devToken,com.shephertz.app42.paas.sdk.csharp.pushNotification.DeviceType.iOS);
 	}
 	
 	//Sends push to a given user
@@ -67,7 +64,8 @@ public class PushScript : MonoBehaviour
 		Debug.Log("SendPushToUser Called");
 		ServiceAPI serviceAPI = new ServiceAPI(api_key,secret_key);	
 	    PushNotificationService pushService = serviceAPI.BuildPushNotificationService();
-		pushService.SendPushMessageToUser(userName,message,callBack);
+		pushService.send
+		//pushService.SendPushMessageToUser(userName,message,callBack);
 	}
 
 	void onDidRegisterUserNotificationSettings(string setting)

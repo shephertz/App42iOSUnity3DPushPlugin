@@ -12,7 +12,8 @@
 
 void registerForRemoteNotifications()
 {
-	//[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    printf("\nregisterForRemoteNotifications\n");
+    NSLog(@"%s",__FUNCTION__);
     UIApplication *application = [UIApplication sharedApplication];
     // Register for Push Notitications, if running on iOS 8
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)])
@@ -39,6 +40,8 @@ void registerForRemoteNotifications()
 char * listenerGameObject = 0;
 void setListenerGameObject(char * listenerName)
 {
+    printf("\nsetListenerGameObject\n");
+    NSLog(@"%s",__func__);
 	free(listenerGameObject);
     listenerGameObject = 0;
 	int len = strlen(listenerName);
@@ -72,26 +75,6 @@ BOOL app42RunTimeDidFinishLaunching(id self, SEL _cmd, id application, id launch
 		[self applicationDidFinishLaunching:application];
 		result = YES;
 	}
-	
-    // Register for Push Notitications, if running on iOS 8
-    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)])
-    {
-        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-                                                        UIUserNotificationTypeBadge |
-                                                        UIUserNotificationTypeSound);
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-                                                                                 categories:nil];
-        [application registerUserNotificationSettings:settings];
-        [application registerForRemoteNotifications];
-    }
-    else
-    {
-        // Register for Push Notifications, if running iOS version < 8
-        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-                                                         UIRemoteNotificationTypeAlert |
-                                                         UIRemoteNotificationTypeSound)];
-    }
-	//[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
 	
 	return result;
 }

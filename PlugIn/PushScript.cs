@@ -23,6 +23,7 @@ public class PushScript : MonoBehaviour
 		App42Log.SetDebug(true);
 		Debug.Log("Start called -----"+this.gameObject.name);
 	    setListenerGameObject(this.gameObject.name);// sets the name of the game object as a listener to which this script is assigned.
+		registerForRemoteNotifications();
 	}
 	
 	//Sent when the application successfully registered with Apple Push Notification Service (APNS).
