@@ -64,8 +64,7 @@ public class PushScript : MonoBehaviour
 		Debug.Log("SendPushToUser Called");
 		ServiceAPI serviceAPI = new ServiceAPI(api_key,secret_key);	
 	    PushNotificationService pushService = serviceAPI.BuildPushNotificationService();
-		pushService.send
-		//pushService.SendPushMessageToUser(userName,message,callBack);
+		pushService.SendPushMessageToUser(userName,message,callBack);
 	}
 
 	void onDidRegisterUserNotificationSettings(string setting)
